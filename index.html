@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Multi-View | Boost Your YouTube Views</title>
+    <meta name="description" content="Boost your YouTube video views with YouTube Multi-View. Enter a YouTube URL and generate multiple views instantly.">
+    <meta name="keywords" content="YouTube, video views, multi-view, increase views, YouTube engagement, watch time, YouTube growth">
+    <meta name="author" content="Your Name">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#FF0000">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="YouTube Multi-View | Boost Your YouTube Views">
+    <meta property="og:description" content="Boost your YouTube video views with this multi-view tool and enhance your YouTube engagement.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="YourWebsiteURL">
+    <meta property="og:image" content="YourImageURL">
+    <meta property="og:site_name" content="YouTube Multi-View">
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="YouTube Multi-View | Boost Your YouTube Views">
+    <meta name="twitter:description" content="Boost your YouTube video views with this multi-view tool and enhance your YouTube engagement.">
+    <meta name="twitter:image" content="YourImageURL">
+    <meta name="twitter:site" content="@YourTwitterHandle">
+    
+    <!-- Canonical Link -->
+    <link rel="canonical" href="YourWebsiteURL">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="YourFaviconURL" type="image/png">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+        }
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        iframe {
+            width: 300px;
+            height: 170px;
+        }
+    </style>
+</head>
+<body>
+    <h1>YouTube Multi-View</h1>
+    <p>Enter a YouTube video URL and choose how many views you want to open.</p>
+    <input type="text" id="videoUrl" placeholder="Enter YouTube URL">
+    <input type="number" id="viewCount" placeholder="Number of Views" min="1" max="10">
+    <button onclick="generateViews()">Generate Views</button>
+    <div class="video-container" id="videoContainer"></div>
+    
+    <script>
+        function generateViews() {
+            const url = document.getElementById('videoUrl').value;
+            const count = parseInt(document.getElementById('viewCount').value) || 1;
+            const container = document.getElementById('videoContainer');
+            container.innerHTML = '';
+            
+            const videoId = getYouTubeID(url);
+            if (!videoId) {
+                alert('Invalid YouTube URL');
+                return;
+            }
+            
+            for (let i = 0; i < count; i++) {
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+                iframe.allow = "autoplay; encrypted-media";
+                iframe.allowfullscreen = true;
+                container.appendChild(iframe);
+            }
+        }
+        
+        function getYouTubeID(url) {
+            const match = url.match(/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([\w-]+)/) ||
+                          url.match(/(?:https?:\/\/)?youtu\.be\/([\w-]+)/);
+            return match ? match[1] : null;
+        }
+    </script>
+</body>
+</html>
